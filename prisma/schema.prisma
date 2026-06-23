@@ -1,0 +1,94 @@
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id            String             @id @default(cuid())
+  email         String             @unique
+  passwordHash  String?
+  name          String?
+  predictions   PredictionResult[]
+  createdAt     DateTime           @default(now())
+  updatedAt     DateTime           @updatedAt
+}
+
+model College {
+  id                  String   @id
+  name                String
+  shortName           String
+  location            String
+  state               String
+  type                String
+  establishedYear     Int
+  rating              Float
+  ranking             Int
+  image               String
+  logo                String
+  description         String
+  overview            String
+  
+  // Stored as JSON strings because SQLite doesn't support String[]
+  coursesString       String 
+  facilitiesString    String
+  accreditationString String
+  highlightsString    String
+
+  fees                Int
+  
+  // Fees Breakdown
+  tuitionFee          Int
+  hostelFee           Int
+  otherFee            Int
+
+  // Placements
+  avgPackage          Int
+  highestPackage      Int
+  medianPackage       Int
+  placementRate       Int
+  topRecruitersString String
+
+  website             String
+
+  courseDetails       Course[]
+  cutoffs             Cutoff[]
+}
+
+model Course {
+  id        String   @id @default(cuid())
+  name      String
+  duration  String
+  level     String
+  fees      Int
+  seats     Int
+
+  collegeId String
+  college   College  @relation(fields: [collegeId], references: [id], onDelete: Cascade)
+}
+
+model Cutoff {
+  id           String  @id @default(cuid())
+  exam         String  // "JEE Advanced", "JEE Main"
+  category     String  // "General", "OBC", "SC", "ST"
+  closingRank  Int
+  
+  collegeId    String
+  college      College @relation(fields: [collegeId], references: [id], onDelete: Cascade)
+}
+
+model PredictionResult {
+  id          String   @id @default(cuid())
+  exam        String
+  rank        Int
+  category    String
+  state       String
+  
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  createdAt   DateTime @default(now())
+}

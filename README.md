@@ -1,36 +1,78 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# College Compass (College Discovery Platform)
 
-## Getting Started
+College Compass is a modern, full-stack web application designed to help students discover, compare, and predict their chances of admission to various top engineering colleges in India. Built with a focus on user experience and reliable information, the platform offers an intuitive interface to streamline the complex college selection process.
 
-First, run the development server:
+## 🚀 Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+*   **College Discovery:** Browse a comprehensive database of top colleges with detailed information, including location, average package, ranking, and tuition fees.
+*   **Admission Predictor:** Estimate your chances of admission into different institutes based on your exam percentiles. 
+*   **Compare Tool:** Select and compare multiple colleges side-by-side across various metrics to make an informed decision.
+*   **User Authentication:** Secure user registration and login functionality allowing users to save their predictions and preferences.
+*   **Interactive Dashboard:** A personalized dashboard to manage your saved predictions, view recently viewed colleges, and access quick actions.
+*   **Responsive Design:** Fully responsive UI crafted with Tailwind CSS that works seamlessly across desktop, tablet, and mobile devices.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🛠️ Tech Stack
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+*   **Frontend Framework:** [Next.js](https://nextjs.org/) (App Router)
+*   **Styling:** [Tailwind CSS](https://tailwindcss.com/)
+*   **Authentication:** [NextAuth.js](https://next-auth.js.org/)
+*   **Database:** SQLite (for development)
+*   **ORM:** [Prisma](https://www.prisma.io/)
+*   **Language:** [TypeScript](https://www.typescriptlang.org/)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## ⚙️ Getting Started
 
-## Learn More
+Follow these instructions to get a copy of the project up and running on your local machine for development and testing purposes.
 
-To learn more about Next.js, take a look at the following resources:
+### Prerequisites
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+*   [Node.js](https://nodejs.org/) (version 18 or higher recommended)
+*   npm or yarn package manager
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Installation
 
-## Deploy on Vercel
+1.  **Clone the repository:**
+    ```bash
+    git clone https://github.com/cheelaakhil/College-Discovery-Platform.git
+    cd College-Discovery-Platform
+    ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+2.  **Install dependencies:**
+    ```bash
+    npm install
+    ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+3.  **Set up the environment variables:**
+    *   Create a `.env` file in the root directory.
+    *   Add the following variables (adjust as needed for your local setup):
+        ```env
+        DATABASE_URL="file:./dev.db"
+        NEXTAUTH_SECRET="your_secure_random_string_here"
+        NEXTAUTH_URL="http://localhost:3000"
+        ```
+
+4.  **Initialize the database:**
+    *   Run Prisma migrations to create the database schema:
+        ```bash
+        npx prisma migrate dev --name init
+        ```
+    *   Seed the database with initial college data:
+        ```bash
+        npm run prisma db seed
+        ```
+
+5.  **Run the development server:**
+    ```bash
+    npm run dev
+    ```
+
+6.  **Open the application:**
+    Open your browser and navigate to [http://localhost:3000](http://localhost:3000) to see the application in action.
+
+## 🤝 Contributing
+
+Contributions, issues, and feature requests are welcome! Feel free to check the [issues page](https://github.com/cheelaakhil/College-Discovery-Platform/issues).
+
+## 📄 License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
